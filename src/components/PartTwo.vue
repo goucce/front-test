@@ -27,35 +27,22 @@
     <div class="exercise">
       <h1>Ejercicio 4</h1>
       <p>Con los datos obtenidos en la anterior llamada, extrae los dias que tengan como <code>timetableType: "LOGISTICS"</code> y los horarios que tengan como <code>visitTypeCode: "PICKUP"</code> y conviertelos al siguiente formato:</p>
-      <div class="code">
-        [
-        <br>
-        &nbsp;&nbsp;&nbsp;{
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dayOfWeek: 'MONDAY',
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;timeSlotCodes:
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'10:00-11:00',
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'11:00-12:00',
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'12:00-13:00',
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
-        <br>
-        &nbsp;&nbsp;&nbsp;},
-        <br>
-        &nbsp;&nbsp;&nbsp;{...},
-        <br>
-        &nbsp;&nbsp;&nbsp;{...},
-        <br>
-        &nbsp;&nbsp;&nbsp;{...}
-        <br>
-        ]
-      </div>
+      <pre class="code">
+[
+  {
+  dayOfWeek: 'MONDAY',
+  timeSlotCodes:
+    [
+      '10:00-11:00',
+      '11:00-12:00',
+      '12:00-13:00',
+    ]
+  },
+  {...},
+  {...},
+  {...}
+]
+      </pre>
     </div>
     
     <hr>
@@ -90,31 +77,7 @@ export default {
 }
 </script>
 
-<style>
-.part {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  width: 75vw;
-}
-p {
-  text-align: left;
-  margin: .5rem 0;
-}
-textarea {
-  margin-bottom: 1rem;
-}
-img {
-  width: 100%;
-  border: 1px solid black;
-  margin-top: 1rem;
-}
-code {
-  padding: .2rem 1rem;
-  background-color: rgb(225, 225, 225);
-  border-radius: 4px;
-}
+<style scoped>
 .request-button {
   font-size: 2rem;
   background-color: transparent;
@@ -125,14 +88,5 @@ code {
 .request-button:hover {
   background-color: rgb(225, 225, 225);
   transform: translateY(-4px) 
-}
-.code {
-  text-align: left;
-  font-family: monospace;
-  background-color: rgb(225, 225, 225);
-  padding: 1rem;
-  border-radius: 4px;
-  margin: 1rem auto;
-  width: fit-content;
 }
 </style>

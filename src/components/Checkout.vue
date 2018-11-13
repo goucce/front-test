@@ -1,10 +1,12 @@
 <template>
 <div class="checkout-wrapper">
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis molestiae quasi deleniti et velit labore maiores quos eaque autem sint accusantium debitis delectus quaerat incidunt architecto, atque molestias voluptate ipsum.</p>
     <ol class="checkout">
-        <li class="step" v-for="(stepName, stepIndex) in steps" :key="stepIndex"
+        <li class="step" v-for="(stepName, stepIndex) in steps"
+            :key="currentStep"
             :class="{
-                'prev': (stepIndex + 1) < currentStep,
-                'active': (stepIndex + 1) === currentStep }"
+                'prev': (stepIndex) < currentStep,
+                'active': (stepIndex) === currentStep }"
             >
             <span class="step-dot">{{ stepIndex + 1 }}</span>
             <span class="step-label">{{ stepName }}</span>
@@ -22,7 +24,7 @@ export default {
     props: {
         currentStep: {
             type: Number,
-            default: 1
+            default: '0'
         },
         steps: {
             type: Array,

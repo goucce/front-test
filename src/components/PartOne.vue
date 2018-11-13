@@ -19,6 +19,25 @@
       <img src="@/assets/stepper.gif" alt="" srcset="">
     </div>
     <hr>
+    <div class="exercise">
+      <h1>Ejercicio 3</h1>
+      <p>Modifica el componente Checkout para que permita moverte entre los pasos por los que hayas pasado.</p>
+      <p>Casos:</p>
+      <ul>
+        <li>
+          <p>Si estás en el paso 1, no te permite clickar sobre ninguno de los pasos siguientes.</p>
+        </li>
+        <li>
+          <p>Si estás en el paso 3, te permite clickar sobre los pasos 1 y 2 pero no sobre los siguientes.</p>
+        </li>
+      </ul>
+    </div>
+    <hr>
+    <div class="exercise">
+      <h1>Ejercicio 4 - CSS</h1>
+      <p>Cambia la posición de los títulos de cada paso. Posiciónalos arriba del paso en lugar de abajo.</p>
+    </div>
+    <hr>
   </div>
 </template>
 
@@ -36,29 +55,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.part {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  width: 75vw;
-}
-p {
-  width: 100%;
-  text-align: left;
-  margin: .5rem 0;
-}
-img {
-  width: 100%;
-  border: 1px solid black;
-  margin-top: 1rem;
-}
-code {
-  padding: .2rem 1rem;
-  background-color: rgb(225, 225, 225);
-  border-radius: 4px;
-
-}
-</style>
