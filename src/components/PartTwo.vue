@@ -86,40 +86,35 @@ export default {
         var datosTimeTable = [];
         var datosTotales = [];
 
+    //Primer bucle donde tenemos 14 resltados, haciendo referencia al if
     for (let i = 0; i < datos.length; i++) {
       const element = datos[i];
-      if (datos[i].timetableType = "LOGISTICS") {
+      if (datos[i].timetableType = "LOGISTICS" ) {
               datosTimeTable.push(datos[i]);
-
-                        
-
-      }
+       }
       
       
-    };
-    //  for (let j = 0; j < datosTimeTable[j].defaultTimetableTimeSlotConfigurations.length; j++) {
-    //       const element2 = datosTimeTable[j].defaultTimetableTimeSlotConfigurations[j];
+    };   
+    //Console log que que corresponde con lo esperado.
+    console.log('Filtro con LOGISTICS :');    
+    console.log( datosTimeTable);
 
-    //       if (datosTimeTable[j].defaultTimetableTimeSlotConfigurations[j].visitTypeCode = "PICKUP") {
-    //         datosTotales.push(datosTimeTable[j]);
-    //       }
-          
-    //     }
-    
-    console.log(datosTimeTable);
-
-    for (let i = 0; i < datosTimeTable.length; i++) {
+    //Segundo bucle donde recorremos las dos condiciones, donde en teoria me tendrían que salir menos resultados.
+    //(No he hecho esto en el aterior bucle porque tras realizar la condición única me esperaba un resultado en el que se me redugera el número de resultado)
+    for (let i = 0; i < datosTimeTable.length; i++) {          
+      
         for (let j = 0; j < datosTimeTable[i].defaultTimetableTimeSlotConfigurations.length; j++) {
-          if (datosTimeTable[i].defaultTimetableTimeSlotConfigurations[j].visitTypeCode == "PICKUP" && datosTimeTable[i].timetableType == "LOGISTICS"  ) {
+          if ( datosTimeTable[i].timetableType === "LOGISTICS" && datosTimeTable[i].defaultTimetableTimeSlotConfigurations[j].visitTypeCode === "PICKUP"   ) {
              datosTotales.push(datosTimeTable[i]);
             //  console.log(datosTimeTable[i]);
-            
-          
+                  
         }
       
        }
+      
     }
 
+    console.log('Filtro con LOGISTICS y PICKUP :');  
     console.log(datosTotales);
     
     
