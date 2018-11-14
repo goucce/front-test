@@ -91,8 +91,7 @@ export default {
       const element = datos[i];
       if (datos[i].timetableType = "LOGISTICS" ) {
               datosTimeTable.push(datos[i]);
-       }
-      
+       }      
       
     };   
     //Console log que que corresponde con lo esperado.
