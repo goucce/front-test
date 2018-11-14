@@ -1,6 +1,8 @@
 <template>
   <div class="part">
-    <Checkout/>
+    <Checkout :steps="steps" :currentStep="currentStep" v-on:last="lastStep" v-on:next="nextStep" ></Checkout>
+
+
     <hr>
     <div class="exercise">
       <h1>Ejercicio 1</h1>
@@ -50,8 +52,30 @@ export default {
   },
   data () {
     return {
-      url: '../assets/stepper.mov'
+      url: '../assets/stepper.mov',
+      steps:[
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      currentStep: 0,
     }
-  }
+  },
+  methods:{                 
+      
+        lastStep: function(){       
+          
+        this.currentStep--
+      }  
+      ,
+        nextStep: function() {
+        
+          
+        this.currentStep++
+        },
+    }
 }
+
 </script>

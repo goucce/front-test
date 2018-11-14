@@ -58,20 +58,64 @@
 </template>
 
 <script>
+
 import axios from 'axios'
+const AuthStr = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyb21hLmN1YXVodGVtb2NAbXJqZWZmYXBwLm14IiwicHJvdmlkZXIiOiI0NDkyOTA2OS0wY2QzLTQwMjItOTVlZi04ZTJkZmE1MDE5NDMiLCJyb2xlcyI6WyJST0xFX1BST1ZJREVSIiwiUk9MRV9IVUIiXSwibmFtZSI6IlJPTUEtQ1VBVUhURU1PQyIsImlzcyI6ImJhY2tvZmZpY2UubXJqZWZmYXBwLm5ldCIsImlkIjoiNDk4MDBhNTAtODk3My00Y2NjLWI5YjYtMGM4MDkwZTQ3YWFlIiwiZnVsbG5hbWUiOiJST01BLUNVQVVIVEVNT0MgMCIsInR5cGUiOiJwcm92aWRlciIsImV4cCI6MTU0MjI4ODU1NiwiaWF0IjoxNTQyMjAyMTU2LCJqdGkiOiJlMzA1OTVjMy0wOWI5LTQ4NTAtYjYyZi1iMGJmZWMwYzA0OGEiLCJlbWFpbCI6InJvbWEuY3VhdWh0ZW1vY0BtcmplZmZhcHAubXgifQ.7FD16kXltb5Gp68yd7VYfE1F1NUSKbAiMo0onTCfvn3cOPJbQ1ykqnbiI9vyZDhDHZbiau7D2GY-ifxaJzLYmA '; 
+var URL = 'https://dev.backoffice.v1.backend.mrjeffapp.net/timetable-service/v1/defaultTimetableConfigurations';
+var ES = 'ES';
+var LOGISTICS = 'LOGISTICS';
+
 
 export default {
   name: 'PartTwo',
   
+  
   methods: {
-    request () {
-      // TODO: Request to the API
+    request () {      
+      axios.get(URL, {
+
+    headers: { Authorization: AuthStr},
+    params: {
+      // timetableType: 'LOGISTICS',
+      countryCode: 'ES',
+          
+    },
+  })
+  .then(function (response) { 
+        var datos = response.data;
+        
+
+    for (let i = 0; i < datos.length; i++) {
+      const element = datos[i];
+      if (datos[i].timetableType = "LOGISTICS") {
+              console.log(element);
+
+      }
+      
+      
     }
+    
+
+
+
+    console.log(datos);
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
+  .then(function () {
+    // always executed
+  });  
+
+    },
   },
 
   data () {
     return {
-      timetable: []
+      timetable: [],
+      datos:{},
+
+      
     }
   },
 }

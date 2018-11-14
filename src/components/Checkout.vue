@@ -1,19 +1,22 @@
 <template>
-<div class="checkout-wrapper">
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis molestiae quasi deleniti et velit labore maiores quos eaque autem sint accusantium debitis delectus quaerat incidunt architecto, atque molestias voluptate ipsum.</p>
+
+<div class="checkout-wrapper" id="check">
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti tenetur, necessitatibus natus vero vitae est nemo laborum itaque aperiam sint totam corporis aliquid, accusamus nostrum quas pariatur aut recusandae. Culpa.</p>
+
     <ol class="checkout">
         <li class="step" v-for="(stepName, stepIndex) in steps"
-            :key="currentStep"
+         :key="`stepName-${stepIndex}`"
             :class="{
                 'prev': (stepIndex) < currentStep,
                 'active': (stepIndex) === currentStep }"
             >
-            <span class="step-dot">{{ stepIndex + 1 }}</span>
             <span class="step-label">{{ stepName }}</span>
+            <span class="step-dot">{{ stepIndex + 1 }}</span>
+            
         </li>
     </ol>
-    <button>Anterior</button>
-    <button>Siguiente</button>
+    <button @click="$emit('last')" >Anterior</button>
+    <button @click="$emit('next')" >Siguiente</button>
 </div>
 </template>
 
@@ -24,13 +27,15 @@ export default {
     props: {
         currentStep: {
             type: Number,
-            default: '0'
+            default: 0
         },
         steps: {
             type: Array,
             required: true
         }
-    }
+    },
+    
+
 }
 </script>
 
@@ -127,6 +132,7 @@ $label-color-inactive: #99a4ac;
     white-space: nowrap;
     visibility: hidden;
     cursor: pointer;
+    padding-bottom: 50px;
   }
 
   .step.active .step-label {
