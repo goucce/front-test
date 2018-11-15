@@ -60,7 +60,7 @@
 <script>
 
 import axios from 'axios'
-const AuthStr = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyb21hLmN1YXVodGVtb2NAbXJqZWZmYXBwLm14IiwicHJvdmlkZXIiOiI0NDkyOTA2OS0wY2QzLTQwMjItOTVlZi04ZTJkZmE1MDE5NDMiLCJyb2xlcyI6WyJST0xFX1BST1ZJREVSIiwiUk9MRV9IVUIiXSwibmFtZSI6IlJPTUEtQ1VBVUhURU1PQyIsImlzcyI6ImJhY2tvZmZpY2UubXJqZWZmYXBwLm5ldCIsImlkIjoiNDk4MDBhNTAtODk3My00Y2NjLWI5YjYtMGM4MDkwZTQ3YWFlIiwiZnVsbG5hbWUiOiJST01BLUNVQVVIVEVNT0MgMCIsInR5cGUiOiJwcm92aWRlciIsImV4cCI6MTU0MjI4ODU1NiwiaWF0IjoxNTQyMjAyMTU2LCJqdGkiOiJlMzA1OTVjMy0wOWI5LTQ4NTAtYjYyZi1iMGJmZWMwYzA0OGEiLCJlbWFpbCI6InJvbWEuY3VhdWh0ZW1vY0BtcmplZmZhcHAubXgifQ.7FD16kXltb5Gp68yd7VYfE1F1NUSKbAiMo0onTCfvn3cOPJbQ1ykqnbiI9vyZDhDHZbiau7D2GY-ifxaJzLYmA '; 
+const AuthStr = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqdWFuZGllZ29AbXJqZWZmYXBwLmNvbSIsInJvbGVzIjpbIlJPTEVfQkFDS09GRklDRSJdLCJuYW1lIjoiSnVhbiBEaWVnbyIsImlzcyI6ImJhY2tvZmZpY2UubXJqZWZmYXBwLm5ldCIsImlkIjoiOGM3OWI3NjctNWJjZS00Y2NmLTk1NmUtMDZmMWJmOWJkMTkwIiwiZnVsbG5hbWUiOiJKdWFuIERpZWdvIC4iLCJ0eXBlIjoidXNlciIsImV4cCI6MTU0MjkwMzU4NiwiaWF0IjoxNTQyMjk4Nzg2LCJqdGkiOiJmMGE4OWYwOS03OTE4LTQ1N2UtYmEzNC01MTBhMTJmZDAyMDAiLCJlbWFpbCI6Imp1YW5kaWVnb0BtcmplZmZhcHAuY29tIn0.MQWwYP8xDGoG57QMJajjaFzU3mKIS3FU5Mgl35njl8NBDXmkW0IMZNdXH6FhbYfmlxmVy_AkrsML9XrTry5FIg '; 
 var URL = 'https://pre.backoffice.v1.backend.mrjeffapp.net/timetable-service/v1/defaultTimetableConfigurations';
 var ES = 'ES';
 var LOGISTICS = 'LOGISTICS';
@@ -85,11 +85,12 @@ export default {
         var datos = response.data;
         var datosTimeTable = [];
         var datosTotales = [];
+        var datosIntermedio=[];
 
     //Primer bucle donde tenemos 14 resltados, haciendo referencia al if
     for (let i = 0; i < datos.length; i++) {
       const element = datos[i];
-      if (datos[i].timetableType = "LOGISTICS" ) {
+      if (datos[i].timetableType === "LOGISTICS" ) {
               datosTimeTable.push(datos[i]);
        }      
       
@@ -100,23 +101,53 @@ export default {
 
     //Segundo bucle donde recorremos las dos condiciones, donde en teoria me tendrían que salir menos resultados.
     //(No he hecho esto en el aterior bucle porque tras realizar la condición única me esperaba un resultado en el que se me redugera el número de resultado)
+    
+    
+    // //////////////////////////////////////////// ERROR
+
+
+  var copydata = datosTimeTable.slice(0);
+  console.log(copydata);
+  
+
     for (let i = 0; i < datosTimeTable.length; i++) {          
-      
-        for (let j = 0; j < datosTimeTable[i].defaultTimetableTimeSlotConfigurations.length; j++) {
-          if ( datosTimeTable[i].timetableType === "LOGISTICS" && datosTimeTable[i].defaultTimetableTimeSlotConfigurations[j].visitTypeCode === "PICKUP"   ) {
-             datosTotales.push(datosTimeTable[i]);
+      var contador=copydata[i].defaultTimetableTimeSlotConfigurations.length
+        for (let j = 0; j < contador; j++) {
+          if ( copydata[i].defaultTimetableTimeSlotConfigurations[j].visitTypeCode === "PICKUP" ) {
+             
+             
+             datosIntermedio.push(datosTimeTable[i].defaultTimetableTimeSlotConfigurations[j]);
+
+              
+              
             //  console.log(datosTimeTable[i]);
+            // datosTotales.slice(0,8, datosTimeTable[i] )
+
+        
+
                   
-        }
+        } 
+        
+        datosTimeTable[i].defaultTimetableTimeSlotConfigurations.length=0;
+       
       
+       datosTimeTable[i].defaultTimetableTimeSlotConfigurations.push(datosIntermedio);
+
        }
+       
+      
+       console.log(datosTimeTable[i].defaultTimetableTimeSlotConfigurations);
+       datosIntermedio.length=0;
+
+  
       
     }
+  
 
     console.log('Filtro con LOGISTICS y PICKUP :');  
-    console.log(datosTotales);
+    console.log(datosTimeTable);
     
-    
+    // //////////////////////////////////////////// ERROR
 
 
 
