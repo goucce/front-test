@@ -1,13 +1,28 @@
 <template>
-  <div class="">
-    <div id="wrapper" class ="container-fluid">
+  <div class="part">
+    <div id="wrapper" class ="table">
+     <thead>
+        <tr  id="resultado">
+
+          
+        </tr>
+
+     </thead>
+     <tbody>
+        <tr id="resultadoTimeTable">
+
+
+
+        </tr>
+
+     </tbody>
      
-        <div id="resultado" class="row justify-content-center"></div>
+        <!-- <div  class="row justify-content-center"></div>
       
       
-        <div class="row justify-content-center"  id="resultadoTimeTable"></div>
-      
-    </div>
+        <div class="row justify-content-center"  ></div>
+       -->
+    </div> 
     <hr>
     
     
@@ -144,14 +159,12 @@ export default {
 
         //Title
 
-        var node = document.createElement('strong')
-        
+        var node = document.createElement('th')   
         
    
           
          node.appendChild(document.createTextNode(dataFinal.dayOfWeek))
-         node.classList.add("col-auto")
-         node.classList.add("m-1")
+         node.getAttribute("scope","col")
         
         document.getElementById('resultado').appendChild( node )  
 
@@ -162,10 +175,11 @@ export default {
         var dataTimeTableOrdenado = dataTimeTable.sort((a,b)=> parseInt(a.split(':')[0])-parseInt(b.split(':')[0]) )
         console.log(dataTimeTableOrdenado);
 
-        var nodeTimeTable = document.createElement('span')
+        var nodeTimeTable = document.createElement('th')
         nodeTimeTable.appendChild(document.createTextNode(dataTimeTableOrdenado))
 
-         nodeTimeTable.classList.add("col-1")
+        //  nodeTimeTable.classList.add("col-1")
+          nodeTimeTable.getAttribute("scope","col")
         
         document.getElementById('resultadoTimeTable').appendChild( nodeTimeTable )     
 
@@ -232,5 +246,8 @@ export default {
   flex-direction: row;
   justify-content: center;
   
+}
+.wrapper{
+  width:75%;
 }
 </style>
