@@ -1,7 +1,12 @@
 <template>
-  <div class="part">
-    <div id="resultado"></div>
-    <div class="container" id="resultadoTimeTable">
+  <div class="">
+    <div id="wrapper" class ="container-fluid">
+     
+        <div id="resultado" class="row justify-content-center"></div>
+      
+      
+        <div class="row justify-content-center"  id="resultadoTimeTable"></div>
+      
     </div>
     <hr>
     
@@ -92,7 +97,7 @@ export default {
         var datosTotales = [];
         var datosIntermedio=[];
 
-        console.log(datos);
+        console.log({datos});
         
     //Primer bucle donde tenemos 14 resltados, haciendo referencia al if
     for (let i = 0; i < datos.length; i++) {
@@ -137,29 +142,35 @@ export default {
 
   var resFinal = resFormat.map( dataFinal => {
 
+        //Title
+
         var node = document.createElement('strong')
-         node.appendChild(document.createTextNode(dataFinal.dayOfWeek))
-         node.classList.add("titulo")
         
-        document.getElementById('resultado').appendChild( node )       
+        
+   
+          
+         node.appendChild(document.createTextNode(dataFinal.dayOfWeek))
+         node.classList.add("col-auto")
+         node.classList.add("m-1")
+        
+        document.getElementById('resultado').appendChild( node )  
+
+        //  TimeTAble
+
+        var dataTimeTable = dataFinal.timeSlotCodes;        
+        
+        var dataTimeTableOrdenado = dataTimeTable.sort((a,b)=> parseInt(a.split(':')[0])-parseInt(b.split(':')[0]) )
+        console.log(dataTimeTableOrdenado);
+
+        var nodeTimeTable = document.createElement('span')
+        nodeTimeTable.appendChild(document.createTextNode(dataTimeTableOrdenado))
+
+         nodeTimeTable.classList.add("col-1")
+        
+        document.getElementById('resultadoTimeTable').appendChild( nodeTimeTable )     
 
 
   } )
-
-  var resFinal2 = resFormat.map( dataFinal2 => {
-
-        
-        var nodeTimeTable = document.createElement('p')
-        nodeTimeTable.appendChild(document.createTextNode(dataFinal2.timeSlotCodes))
-         nodeTimeTable.classList.add("timeTable")
-
-        document.getElementById('resultadoTimeTable').appendChild( nodeTimeTable )
-
-
-  } )  
-    
-    
-
 
 
     
@@ -204,19 +215,22 @@ export default {
 .titulo{
   padding-left: 2vh;
   padding-right: 2vh;
+  display: flex;
+  justify-content: center;
 }
-.timeTable {
+ #resultadoTimeTable {
   /* column-count: 1; */
-  font-size: 1.6vh;
-  width: 200px;
-  padding-left: 2vh;
+  font-size: 1.6vh!important;
+  /* width: 18vh; */
+  /*padding-left: 1vh;
   padding-right: 2vh;
-  margin-right: 2.1vh;
+  margin-right: 2.1vh;*/
   /* text-align: justify; */
 }
 .container{
   display: flex;
   flex-direction: row;
+  justify-content: center;
   
 }
 </style>
