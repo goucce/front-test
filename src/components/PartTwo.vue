@@ -141,13 +141,7 @@ export default {
          node.appendChild(document.createTextNode(dataFinal.dayOfWeek))
          node.classList.add("titulo")
         
-        document.getElementById('resultado').appendChild( node )
-
-        // var nodeTimeTable = document.createElement('p')
-        // nodeTimeTable.appendChild(document.createTextNode(dataFinal.timeSlotCodes))
-        //  nodeTimeTable.classList.add("timeTable")
-
-        // document.getElementById('resultado').appendChild( nodeTimeTable )
+        document.getElementById('resultado').appendChild( node )       
 
 
   } )
