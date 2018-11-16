@@ -2,26 +2,16 @@
   <div class="part">
     <div id="wrapper" class ="table">
      <thead>
-        <tr  id="resultado">
-
-          
+        <tr  id="resultado">         
         </tr>
 
      </thead>
      <tbody>
         <tr id="resultadoTimeTable">
-
-
-
         </tr>
 
      </tbody>
      
-        <!-- <div  class="row justify-content-center"></div>
-      
-      
-        <div class="row justify-content-center"  ></div>
-       -->
     </div> 
     <hr>
     
@@ -176,7 +166,14 @@ export default {
         console.log(dataTimeTableOrdenado);
 
         var nodeTimeTable = document.createElement('th')
-        nodeTimeTable.appendChild(document.createTextNode(dataTimeTableOrdenado))
+
+        for (let i = 0; i < dataTimeTableOrdenado.length; i++) {
+          
+          nodeTimeTable.appendChild(document.createTextNode(dataTimeTableOrdenado[i]))
+          nodeTimeTable.appendChild(document.createTextNode(' '))
+          
+        }
+        
 
         //  nodeTimeTable.classList.add("col-1")
           nodeTimeTable.getAttribute("scope","col")
@@ -233,13 +230,10 @@ export default {
   justify-content: center;
 }
  #resultadoTimeTable {
-  /* column-count: 1; */
+  
   font-size: 1.6vh!important;
-  /* width: 18vh; */
-  /*padding-left: 1vh;
-  padding-right: 2vh;
-  margin-right: 2.1vh;*/
-  /* text-align: justify; */
+  width:  2vh;
+  
 }
 .container{
   display: flex;
@@ -250,4 +244,5 @@ export default {
 .wrapper{
   width:75%;
 }
+
 </style>
