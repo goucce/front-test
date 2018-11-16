@@ -8,6 +8,7 @@
      </thead>
      <tbody>
         <tr id="resultadoTimeTable">
+          
         </tr>
 
      </tbody>
@@ -165,12 +166,12 @@ export default {
         var dataTimeTableOrdenado = dataTimeTable.sort((a,b)=> parseInt(a.split(':')[0])-parseInt(b.split(':')[0]) )
         console.log(dataTimeTableOrdenado);
 
-        var nodeTimeTable = document.createElement('th')
+        var nodeTimeTable = document.createElement('td')
 
         for (let i = 0; i < dataTimeTableOrdenado.length; i++) {
-          
-          nodeTimeTable.appendChild(document.createTextNode(dataTimeTableOrdenado[i]))
-          nodeTimeTable.appendChild(document.createTextNode(' '))
+         var nodeInter = document.createElement('span')
+          nodeInter.appendChild(document.createTextNode(dataTimeTableOrdenado[i]))
+          nodeTimeTable.appendChild(nodeInter)
           
         }
         
@@ -243,6 +244,11 @@ export default {
 }
 .wrapper{
   width:75%;
+}
+
+#resultadoTimeTable span{
+    width: 94px;
+    display: inline-block;
 }
 
 </style>
