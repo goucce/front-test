@@ -1,6 +1,11 @@
 <template>
   <div class="part">
+    <div id="resultado"></div>
+    <div class="container" id="resultadoTimeTable">
+    </div>
     <hr>
+    
+    
     <div class="exercise">
       <h1>Ejercicio 3</h1>
       <p>
@@ -87,6 +92,8 @@ export default {
         var datosTotales = [];
         var datosIntermedio=[];
 
+        console.log(datos);
+        
     //Primer bucle donde tenemos 14 resltados, haciendo referencia al if
     for (let i = 0; i < datos.length; i++) {
       const element = datos[i];
@@ -97,57 +104,67 @@ export default {
     };   
     //Console log que que corresponde con lo esperado.
     console.log('Filtro con LOGISTICS :');    
-    console.log( datosTimeTable);
+    console.log( {datosTimeTable});
 
-    //Segundo bucle donde recorremos las dos condiciones, donde en teoria me tendrían que salir menos resultados.
-    //(No he hecho esto en el aterior bucle porque tras realizar la condición única me esperaba un resultado en el que se me redugera el número de resultado)
     
-    
-    // //////////////////////////////////////////// ERROR
 
+      
+ var resultado = datosTimeTable.map( (dataValue) => {     
+   // console.log({dataValue});      
+     dataValue.defaultTimetableTimeSlotConfigurations = dataValue.defaultTimetableTimeSlotConfigurations.filter((pedidos) => {
+         return pedidos.visitTypeCode == "PICKUP"       
+        
+      }  )
+    return dataValue
+   }  );
+  
+  console.log({resultado});
 
-  var copydata = datosTimeTable.slice(0);
-  console.log(copydata);
   
 
-    for (let i = 0; i < datosTimeTable.length; i++) {          
-      var contador=copydata[i].defaultTimetableTimeSlotConfigurations.length
-        for (let j = 0; j < contador; j++) {
-          if ( copydata[i].defaultTimetableTimeSlotConfigurations[j].visitTypeCode === "PICKUP" ) {
-             
-             
-             datosIntermedio.push(datosTimeTable[i].defaultTimetableTimeSlotConfigurations[j]);
+  var resFormat = resultado.map( dataFormat => {
+    return {
 
-              
-              
-            //  console.log(datosTimeTable[i]);
-            // datosTotales.slice(0,8, datosTimeTable[i] )
-
-        
-
-                  
-        } 
-        
-        datosTimeTable[i].defaultTimetableTimeSlotConfigurations.length=0;
-       
-      
-       datosTimeTable[i].defaultTimetableTimeSlotConfigurations.push(datosIntermedio);
-
-       }
-       
-      
-       console.log(datosTimeTable[i].defaultTimetableTimeSlotConfigurations);
-       datosIntermedio.length=0;
-
-  
-      
+     dayOfWeek: dataFormat.dayOfWeek,
+     timeSlotCodes: dataFormat.defaultTimetableTimeSlotConfigurations.map(val => val.timeSlotCode )
+ 
     }
-  
 
-    console.log('Filtro con LOGISTICS y PICKUP :');  
-    console.log(datosTimeTable);
+  })
+
+  console.log({resFormat});   
+
+
+  var resFinal = resFormat.map( dataFinal => {
+
+        var node = document.createElement('strong')
+         node.appendChild(document.createTextNode(dataFinal.dayOfWeek))
+         node.classList.add("titulo")
+        
+        document.getElementById('resultado').appendChild( node )
+
+        // var nodeTimeTable = document.createElement('p')
+        // nodeTimeTable.appendChild(document.createTextNode(dataFinal.timeSlotCodes))
+        //  nodeTimeTable.classList.add("timeTable")
+
+        // document.getElementById('resultado').appendChild( nodeTimeTable )
+
+
+  } )
+
+  var resFinal2 = resFormat.map( dataFinal2 => {
+
+        
+        var nodeTimeTable = document.createElement('p')
+        nodeTimeTable.appendChild(document.createTextNode(dataFinal2.timeSlotCodes))
+         nodeTimeTable.classList.add("timeTable")
+
+        document.getElementById('resultadoTimeTable').appendChild( nodeTimeTable )
+
+
+  } )  
     
-    // //////////////////////////////////////////// ERROR
+    
 
 
 
@@ -185,5 +202,27 @@ export default {
 .request-button:hover {
   background-color: rgb(225, 225, 225);
   transform: translateY(-4px) 
+}
+
+</style>
+
+<style>
+.titulo{
+  padding-left: 2vh;
+  padding-right: 2vh;
+}
+.timeTable {
+  /* column-count: 1; */
+  font-size: 1.6vh;
+  width: 200px;
+  padding-left: 2vh;
+  padding-right: 2vh;
+  margin-right: 2.1vh;
+  /* text-align: justify; */
+}
+.container{
+  display: flex;
+  flex-direction: row;
+  
 }
 </style>
